@@ -16,65 +16,65 @@ public GameObject ndown;
 
 
 
-}
+
 
 
 
     // Start is called before the first frame update
     void Start()
     { 
-        RayCastHit2D[] hitsDown;
+        RaycastHit2D[] hitsDown;
     // for shooting 3lshan unzel down  
-        hitsDown = physics2d.RayCastAll(transfrom.position, -vector2.up);
+        hitsDown = Physics2D.RaycastAll(transform.position, -Vector2.up);
     // loop through el l3b objects
-        for (int i = 0;i<hitsDown.legnth;i++) {
+        for (int i = 0;i<hitsDown.Length;i++) {
         float distance = Mathf.Abs(hitsDown[i].point.y - transform.position.y);
         if (distance < 0.4f)
             {
             movedown = true;
-            ndown = hitsDown[i].colider.gameObject;
+            ndown = hitsDown[i].collider.gameObject;
             }
     
         }
-         RayCastHit2D[] hitsUp;
+         RaycastHit2D[] hitsUp;
          // for shooting 3lshan unzel down  
-         hitsUp = physics2d.RayCastAll(transfrom.position, -vector2.up);
+         hitsUp = Physics2D.RaycastAll(transform.position, Vector2.up);
     // loop through el l3b objects
-    for (int i = 0; i < hitsUp.legnth; i++)
+    for (int i = 0; i < hitsUp.Length; i++)
     {
         float distance = Mathf.Abs(hitsUp[i].point.y - transform.position.y);
         if (distance < 0.4f)
         {
             moveup = true;
-            nup = hitsUp[i].colider.gameObject;
+            nup = hitsUp[i].collider.gameObject;
         }
 
     }
-    RayCastHit2D[] hitsRight;
+    RaycastHit2D[] hitsRight    ;
     // for shooting 3lshan unzel  
-    hitsRight = physics2d.RayCastAll(transfrom.position, -vector2.Right);
+    hitsRight = Physics2D.RaycastAll(transform.position, Vector2.right);
     // loop through el l3b objects
-    for (int i = 0; i < hitsRight.legnth; i++)
+    for (int i = 0; i < hitsRight.Length; i++)
     {
         float distance = Mathf.Abs(hitsRight[i].point.x - transform.position.x);
         if (distance < 0.4f)
         {
             moveright = true;
-            nright = hitsRight[i].colider.gameObject;
+            nright = hitsRight[i].collider.gameObject;
         }
 
     }
-    RayCastHit2D[] hitsLeft;
+    RaycastHit2D[] hitsLeft;
     // for shooting 3lshan unzel down  
-    hitsLeft = physics2d.RayCastAll(transfrom.position, -vector2.up);
+    hitsLeft = Physics2D.RaycastAll(transform.position,-Vector2.right);
     // loop through el l3b objects
-    for (int i = 0; i < hitsLeft.legnth; i++)
+    for (int i = 0; i < hitsLeft.Length; i++)
     {
         float distance = Mathf.Abs(hitsLeft[i].point.x - transform.position.x);
         if (distance < 0.4f)
         {
             moveleft = true;
-            nleft = hitsLeft[i].colider.gameObject;
+            nleft = hitsLeft[i].collider.gameObject;
         }
 
     }
@@ -84,5 +84,28 @@ public GameObject ndown;
     void Update()
     {
         
+    }
+    public GameObject GetNodeFromDirection(string direction)
+    {
+        if (direction =="left"  && moveleft)
+        {
+            return nleft;
+        }
+        else if (direction == "right" && moveright)
+        {
+            return nright;
+        }
+        else if (direction == "up" && moveup)
+        {
+            return nup;
+        }
+        else if (direction == "down" && movedown)
+        {
+            return ndown;
+        }
+        else        
+        {
+            return null;
+        }
     }
 }
