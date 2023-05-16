@@ -13,15 +13,17 @@ public GameObject nleft;
 public GameObject nright;
 public GameObject nup;
 public GameObject ndown;
+public bool isWarpRightNode = false;
+public bool isWarpLeftNode = false;
 
 
 
 
 
-
+        
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     { 
         RaycastHit2D[] hitsDown;
     // for shooting 3lshan unzel down  
@@ -87,11 +89,11 @@ public GameObject ndown;
     }
     public GameObject GetNodeFromDirection(string direction)
     {
-        if (direction =="left"  && moveleft)
+        if (direction =="Left"  && moveleft)
         {
             return nleft;
         }
-        else if (direction == "right" && moveright)
+        else if (direction == "Right" && moveright)
         {
             return nright;
         }
